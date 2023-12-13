@@ -4,8 +4,8 @@ session_start();
 
 // Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-	header("location: dashboard.php");
-	exit;
+	header("Location: dashboard.php");
+	exit();
 }
 
 // Incluir arquivo de configuração
@@ -60,10 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							$_SESSION["id"] = $id;
 							$_SESSION["username"] = $username;
 
-							echo "Login ok";
-
 							// Redirecionar o usuário para a página de boas-vindas
-							header("location: dashboard.php");
+							header("Location: dashboard.php");
+							exit();
 						} else {
 							// A senha não é válida, exibe uma mensagem de erro genérica
 							$login_err = "Nome de usuário ou senha inválidos.";
