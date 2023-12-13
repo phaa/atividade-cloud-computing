@@ -60,6 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							$_SESSION["id"] = $id;
 							$_SESSION["username"] = $username;
 
+							echo "Login ok";
+
 							// Redirecionar o usuário para a página de boas-vindas
 							header("location: dashboard.php");
 						} else {
