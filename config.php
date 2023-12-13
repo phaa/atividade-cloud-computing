@@ -1,8 +1,8 @@
 <?php
 session_start();
 $host = "localhost";
-$usuario = "root";
-$senha = "";
+$usuario = "usuario";
+$senha = "password";
 
 try {
   $conn = new PDO("mysql:host=$host;dbname=meusistema", $usuario, $senha);
