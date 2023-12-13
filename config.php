@@ -3,10 +3,12 @@ session_start();
 $host = "localhost";
 $usuario = "root";
 $senha = "";
-$db = "meusistema";
 
-$con = mysqli_connect($host, $usuario, $senha, $db);
-
-if (!$con) {
-  die("Falha na conexão: " . mysqli_connect_error());
+try {
+  $conn = new PDO("mysql:host=$host;dbname=meusistema", $usuario, $senha);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  echo "Conectado com sucesso";
+} catch(PDOException $e) {
+  echo "Falha na conexão: " . $e->getMessage();
 }

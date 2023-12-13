@@ -1,31 +1,29 @@
 <?php
-include "config.php";
-
-// Check user login or not
-if (!isset($_SESSION['uname'])) {
-    header('Location: login.php');
-}
-
-// logout
-if (isset($_POST['but_logout'])) {
-    session_destroy();
-    header('Location: login.php');
+// Inicialize a sessão
+session_start();
+ 
+// Verifique se o usuário está logado, se não, redirecione-o para uma página de login
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
 }
 ?>
-<!doctype html>
+ 
+<!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Bem vindo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body{ font: 14px sans-serif; text-align: center; }
+    </style>
 </head>
-
 <body>
-    <h1>Homepage</h1>
-    <form method='post' action="">
-        <input type="submit" value="Logout" name="but_logout">
-    </form>
+    <h1 class="my-5">Oi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bem vindo ao nosso site.</h1>
+    <p>
+        <a href="reset-password.php" class="btn btn-warning">Redefina sua senha</a>
+        <a href="logout.php" class="btn btn-danger ml-3">Sair da conta</a>
+    </p>
 </body>
-
 </html>
